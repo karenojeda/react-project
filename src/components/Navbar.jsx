@@ -13,7 +13,7 @@ const Navbar = () => {
           Watched
         </NavLink>
         <NavLink to="/favorites" activeClassName="active-link" className="nav-link">
-          Favorites
+          Favoritos
         </NavLink>
         <NavLink to="/watchlist" activeClassName="active-link" className="nav-link">
           Watchlist
