@@ -1,37 +1,28 @@
 import React from "react";
-import { Modal, Button } from "react-bootstrap";
-import "./styles/ListModal.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import "/src/components/ListModal.css";
 
-const ListModal = ({ show, handleClose, listType }) => {
-  const getTitle = () => {
-    switch (listType) {
-      case "watchlist":
-        return "Watchlist";
-      case "favorites":
-        return "Favorites";
-      case "watched":
-        return "Watched";
-      default:
-        return "";
-    }
-  };
+const Modal = ({ show, handleClose, children, title }) => {
+  if (!show) {
+    return null;
+  }
 
   return (
-    <Modal show={show} onHide={handleClose} centered>
-      <Modal.Header closeButton>
-        <Modal.Title>{getTitle()}</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        {}
-        {}
-      </Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
-          Close
-        </Button>
-      </Modal.Footer>
-    </Modal>
+    <div className="modal-overlay">
+      <div className="modal-content">
+        <div className="modal-header">
+          <h2>{title}</h2>
+          <button className="close-button" onClick={handleClose}>
+            <FontAwesomeIcon icon={faTimes} />
+          </button>
+        </div>
+        <div className="modal-body">
+          {children}
+        </div>
+      </div>
+    </div>
   );
 };
 
-export default ListModal;
+export default Modal;

@@ -1,31 +1,79 @@
-import React, { useState } from "react";
-import "./styles/MovieCard.css";
+import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faHeart, faClock, faStar } from '@fortawesome/free-solid-svg-icons';
+import '../styles/MovieCard.css';
 
-const MovieCard = ({ movie, addToList }) => {
-  const [expanded, setExpanded] = useState(false);
+const MovieCard = ({ movie, handleListChange }) => {
+  const [rating, setRating] = useState(0);
+  const [hoverRating, setHoverRating] = useState(0);
+  const [isExpanded, setIsExpanded] = useState(false);
 
-  const handleExpand = () => {
-    setExpanded(!expanded);
+  const handleRating = (rate) => {
+    setRating(rate);
+  };
+
+  const handleMouseEnter = (rate) => {
+    setHoverRating(rate);
+  };
+
+  const handleMouseLeave = () => {
+    setHoverRating(0);
+  };
+
+  const toggleExpand = () => {
+    setIsExpanded(!isExpanded);
   };
 
   return (
-    <div className="movie-card">
-      <img src={movie.posterUrl} alt={`${movie.title} poster`} />
-      <div className="movie-details">
-        <h3>{movie.title} ({movie.year})</h3>
-        <div className="buttons">
-          <button className="btn btn-watchlist" onClick={() => addToList(movie, "watchlist")}>🔲</button>
-          <button className="btn btn-favorites" onClick={() => addToList(movie, "favorites")}>❤️</button>
-          <button className="btn btn-watched" onClick={() => addToList(movie, "watched")}>👁️</button>
-        </div>
-        <button className="btn btn-info" onClick={handleExpand}>+ info</button>
-        {expanded && (
-          <div className="additional-info">
-            <p>{movie.synopsis}</p>
-            <p>General Rating: {movie.generalRating}</p>
-          </div>
-        )}
+    <div className={`movie-card ${isExpanded ? 'expanded' : ''}`}>
+      <img src={movie.posterUrl} alt={`${movie.title} poster`} className="movie-poster" />
+      <h3>{movie.title} <span>({movie.year})</span></h3>
+      <p>Director: {movie.director}</p>
+      <div className="rating">
+        {[1, 2, 3, 4, 5].map((star) => (
+          <span
+            key={star}
+            className={`star ${hoverRating >= star || rating >= star ? 'filled' : ''}`}
+            onClick={() => handleRating(star)}
+            onMouseEnter={() => handleMouseEnter(star)}
+            onMouseLeave={handleMouseLeave}
+          >
+            <FontAwesomeIcon icon={faStar} />
+          </span>
+        ))}
       </div>
+      <div className="buttons">
+        <button
+          className="watchlist"
+          onClick={() => handleListChange(movie, 'watchlist')}
+          title="Agregar a Watchlist"
+        >
+          <FontAwesomeIcon icon={faClock} />
+        </button>
+        <button
+          className="favorites"
+          onClick={() => handleListChange(movie, 'favorites')}
+          title="Agregar a Favoritos"
+        >
+          <FontAwesomeIcon icon={faHeart} />
+        </button>
+        <button
+          className="watched"
+          onClick={() => handleListChange(movie, 'watched')}
+          title="Agregar a Watched"
+        >
+          <FontAwesomeIcon icon={faEye} />
+        </button>
+      </div>
+      <button className="info-button" onClick={toggleExpand}>
+        + info
+      </button>
+      {isExpanded && (
+        <div className="movie-details">
+          <p className="synopsis">Sinopsis: {movie.synopsis}</p>
+          <p className="general-rating">Ratings: {movie.generalRating} <FontAwesomeIcon icon={faStar} /></p>
+        </div>
+      )}
     </div>
   );
 };
