@@ -1,6 +1,15 @@
 .footer{
     background-color: black;
-    color: white;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    padding: 1rem;
+    position: bottom;
+    width: 100%;
+}
+
+.footer-container{
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    display: block;
 }
