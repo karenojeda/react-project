@@ -11,6 +11,11 @@
   position: relative;
 }
 
+.movie-card.expanded {
+  width: 300px;
+  padding-bottom: 20px;
+}
+
 .movie-card:hover {
   transform: scale(1.05);
 }
@@ -96,4 +101,43 @@
   border-radius: 4px;
   font-size: 12px;
   white-space: nowrap;
+}
+
+.info-button {
+  background-color: #40bcf4;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.info-button:hover {
+  background-color: #3399cc;
+}
+
+.movie-details {
+  margin-top: 10px;
+  text-align: left;
+  color: #bbb;
+}
+
+.synopsis {
+  margin-bottom: 5px;
+}
+
+.general-rating {
+  margin-bottom: 0;
+}
+
+.btn-watchlist:hover {
+  background-color: #40bcf4;
+}
+.btn-favorites:hover {
+  background-color: #ff8000;
+}
+.btn-watched:hover {
+  background-color: #00e054;
 }
