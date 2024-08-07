@@ -10,7 +10,14 @@
 
 .home-title {
   font-size: 2rem;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  color: #ffcc00;
+}
+
+.home-secondary-text {
+  font-size: 1.1rem;
+  margin: 5px;
+  margin-bottom: 15px;
   color: #ffcc00;
 }
 

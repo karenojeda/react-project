@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage';
 import WatchlistPage from './pages/WatchlistPage';
 import FavoritesPage from './pages/FavoritesPage';
 import WatchedPage from './pages/WatchedPage';
+import Footer from './components/Footer';
 
   
 const App = () => {
@@ -32,6 +33,7 @@ const App = () => {
         <Route path="/favorites" element={<FavoritesPage favorites={favorites} handleListChange={handleListChange} />} />
         <Route path="/watched" element={<WatchedPage watched={watched} handleListChange={handleListChange} />} />
       </Routes>
+      <Footer />
     </Router>
   );
 };
