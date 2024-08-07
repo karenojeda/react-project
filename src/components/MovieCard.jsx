@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faHeart, faClock, faStar } from '@fortawesome/free-solid-svg-icons';
 import '../styles/MovieCard.css';
 
+//Agregar puntuación
 const MovieCard = ({ movie, handleListChange }) => {
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
@@ -24,8 +25,11 @@ const MovieCard = ({ movie, handleListChange }) => {
     setIsExpanded(!isExpanded);
   };
 
+
+
   return (
-    <div className={`movie-card ${isExpanded ? 'expanded' : ''}`}>
+    //Movie Cards info
+    <div className={`movie-card ${isExpanded ? 'expanded' : ''}`}> 
       <img src={movie.posterUrl} alt={`${movie.title} poster`} className="movie-poster" />
       <h3>{movie.title} <span>({movie.year})</span></h3>
       <p>Director: {movie.director}</p>

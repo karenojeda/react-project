@@ -9,7 +9,10 @@ const HomePage = ({ handleListChange }) => {
       <h1 className="home-title">Cineteca</h1>
       <div className="movie-list">
         {movies.map(movie => (
-          <MovieCard key={movie.id} movie={movie} handleListChange={handleListChange} />
+          <MovieCard
+          key={movie.id}
+          movie={movie}
+          handleListChange={handleListChange} />
         ))}
       </div>
     </div>

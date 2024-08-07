@@ -9,14 +9,14 @@ const Navbar = () => {
         <NavLink to="/" exact activeClassName="active-link" className="nav-link">
           Home
         </NavLink>
-        <NavLink to="/watched" activeClassName="active-link" className="nav-link">
-          Watched
+                <NavLink to="/watchlist" activeClassName="active-link" className="nav-link">
+          Watchlist
         </NavLink>
         <NavLink to="/favorites" activeClassName="active-link" className="nav-link">
           Favoritos
         </NavLink>
-        <NavLink to="/watchlist" activeClassName="active-link" className="nav-link">
-          Watchlist
+        <NavLink to="/watched" activeClassName="active-link" className="nav-link">
+          Watched
         </NavLink>
       </div>
     </nav>
