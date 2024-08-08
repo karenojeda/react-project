@@ -43,20 +43,17 @@
 }
 
 .rating {
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
+  margin: 10px 0;
 }
 
-.rating .star {
+.star {
   cursor: pointer;
-  font-size: 24px;
-  color: #ddd;
-  margin: 0 5px;
-  transition: color 0.3s ease;
+  color: #ccc;
+  font-size: 1.5em;
+  position: relative;
 }
 
-.rating .star.filled {
+.star.filled {
   color: #ffcc00;
 }
 
@@ -87,6 +84,10 @@
 
 .buttons .watched:hover {
   background-color: #00e054;
+}
+
+.buttons .delete:hover{
+  background-color: rgb(250, 43, 43);
 }
 
 .buttons button:hover::after {

@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faHeart, faClock, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faHeart, faClock, faTrash, faStar } from '@fortawesome/free-solid-svg-icons';
 import '../styles/MovieCard.css';
 
 //Agregar puntuación
-const MovieCard = ({ movie, handleListChange }) => {
-  const [rating, setRating] = useState(0);
+const MovieCard = ({ movie, handleListChange, buttonText ,handleDeleteMovie }) => {
+  const [rating, setRating] = useState(movie.rating || 0);
   const [hoverRating, setHoverRating] = useState(0);
   const [isExpanded, setIsExpanded] = useState(false);
 
   const handleRating = (rate) => {
     setRating(rate);
+    movie.rating = rate;
   };
 
   const handleMouseEnter = (rate) => {
@@ -34,10 +35,10 @@ const MovieCard = ({ movie, handleListChange }) => {
       <h3>{movie.title} <span>({movie.year})</span></h3>
       <p>Director: {movie.director}</p>
       <div className="rating">
-        {[1, 2, 3, 4, 5].map((star) => (
+        {[1, 2, 3, 4, 5].map((star, index) => (
           <span
-            key={star}
-            className={`star ${hoverRating >= star || rating >= star ? 'filled' : ''}`}
+            key={index}
+            className={`star ${hoverRating >= star || rating >= star ? 'filled' : ''} ${Math.ceil(hoverRating) === star || Math.ceil(rating) === star ? 'half' : ''}`}
             onClick={() => handleRating(star)}
             onMouseEnter={() => handleMouseEnter(star)}
             onMouseLeave={handleMouseLeave}
@@ -67,6 +68,13 @@ const MovieCard = ({ movie, handleListChange }) => {
           title="Agregar a Watched"
         >
           <FontAwesomeIcon icon={faEye} />
+        </button>
+        <button
+          className='delete'
+          onClick={() => handleDeleteMovie(movie.id)}
+          title='Eliminar película'
+        >
+        <FontAwesomeIcon icon={faTrash} />
         </button>
       </div>
       <button className="info-button" onClick={toggleExpand}>
