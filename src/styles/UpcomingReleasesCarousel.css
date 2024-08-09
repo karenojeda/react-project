@@ -1,0 +1,19 @@
+.carousel-container {
+    width: 100%; /* Ocupa todo el ancho disponible */
+    padding: 0; /* Elimina el padding si no es necesario */
+    background-color: #f4f4f4; /* Fondo opcional para el contenedor */
+  }
+  
+  .carousel-item img {
+    width: 100%; /* Ajusta el ancho de la imagen al 100% del contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
+    max-height: 250px; /* Ajusta la altura máxima de la imagen para hacer el carrusel más bajo */
+    object-fit: cover; /* Cubre el contenedor sin distorsionar la imagen */
+  }
+  
+  @media (max-width: 768px) {
+    .carousel-item img {
+      max-height: 150px; /* Ajusta la altura máxima en pantallas pequeñas para que el carrusel sea aún más bajo */
+    }
+  }
+  

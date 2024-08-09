@@ -3,11 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faHeart, faClock, faTrash, faStar } from '@fortawesome/free-solid-svg-icons';
 import '../styles/MovieCard.css';
 
-//Agregar puntuación
-const MovieCard = ({ movie, handleListChange, buttonText ,handleDeleteMovie }) => {
+const MovieCard = ({ movie, handleListChange, handleDeleteMovie }) => {
   const [rating, setRating] = useState(movie.rating || 0);
   const [hoverRating, setHoverRating] = useState(0);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [comments, setComments] = useState(movie.comments || []);
+  const [newComment, setNewComment] = useState('');
 
   const handleRating = (rate) => {
     setRating(rate);
@@ -26,11 +27,16 @@ const MovieCard = ({ movie, handleListChange, buttonText ,handleDeleteMovie }) =
     setIsExpanded(!isExpanded);
   };
 
-
+  const addComment = () => {
+    if (newComment.trim() === '') return;
+    const updatedComments = [...comments, newComment];
+    setComments(updatedComments);
+    setNewComment('');
+    
+  };
 
   return (
-    //Movie Cards info
-    <div className={`movie-card ${isExpanded ? 'expanded' : ''}`}> 
+    <div className={`movie-card ${isExpanded ? 'expanded' : ''}`}>
       <img src={movie.posterUrl} alt={`${movie.title} poster`} className="movie-poster" />
       <h3>{movie.title} <span>({movie.year})</span></h3>
       <p>Director: {movie.director}</p>
@@ -69,13 +75,15 @@ const MovieCard = ({ movie, handleListChange, buttonText ,handleDeleteMovie }) =
         >
           <FontAwesomeIcon icon={faEye} />
         </button>
-        <button
-          className='delete'
-          onClick={() => handleDeleteMovie(movie.id)}
-          title='Eliminar película'
-        >
-        <FontAwesomeIcon icon={faTrash} />
-        </button>
+        {handleDeleteMovie && (
+          <button
+            className='delete'
+            onClick={() => handleDeleteMovie(movie.id)}
+            title='Eliminar película'
+          >
+            <FontAwesomeIcon icon={faTrash} />
+          </button>
+        )}
       </div>
       <button className="info-button" onClick={toggleExpand}>
         + info
@@ -84,6 +92,20 @@ const MovieCard = ({ movie, handleListChange, buttonText ,handleDeleteMovie }) =
         <div className="movie-details">
           <p className="synopsis">Sinopsis: {movie.synopsis}</p>
           <p className="general-rating">Ratings: {movie.generalRating} <FontAwesomeIcon icon={faStar} /></p>
+          <div className="comments-section">
+            <h4>Reseñas:</h4>
+            <ul>
+              {comments.map((comment, index) => (
+                <li key={index}>{comment}</li>
+              ))}
+            </ul>
+            <textarea
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
+              placeholder="Añadir una reseña..."
+            />
+            <button className="info-button" onClick={addComment}>Añadir reseña</button>
+          </div>
         </div>
       )}
     </div>
